@@ -1,47 +1,33 @@
-from gestorHotel import GestorHotel
-from Hotel import Hotel
-from Habitacion import Habitacion
+from gestorBiblioteca import gestorBiblioteca
 
 
 def menu():
     op = None
     try:
-        op = int(input("""Ingrese la opcion a ejecutar, 0 para finzalizar el programa: 
-        1-Agregar habitacion
-        2-Reservar habitacion
-        3-Liberar habitacion
-        4-Dado un tipo de habitacion, mostrar numero y piso de las habitaciones
-        5-Mostrar habitaciones libres por piso
-        6-Lista \n """))
+        op = int(input("""----MENU DE OPCIONES----
+        1-Agregar Libro
+        2-Eliminar Libro
+        3-Busqueda por nombre de libro
+        4-Lista de libros                      
+        """))
     except ValueError:
         pass
     return op
 
 
 if __name__ == "__main__":
-    gestor = GestorHotel()
-    gestor.cargaHoteles()
-    opcion = menu()
-    while opcion != 0:
-        if opcion == 1:
-            i = int(input(
-                "Ingrese hotel a agregarle habitacion:1 para hotel paraiso tropical-2 para hotel central "))
-            i -= 1
-            gestor.agregarHabitacionman(i)
-        elif opcion == 2:
-            intento = int(input("Ingrese numero de habitacion a reservar: \n"))
-            gestor.reservarHabitacion(intento)
-        elif opcion == 3:
-            intento = int(input("Ingrese numero de habitacion a liberar: \n"))
-            gestor.liberarHabitacion(intento)
-        elif opcion == 4:
-            tipo = input("Ingrese tipo de habitacion a buscar: \n")
-            gestor.mostrarHabitacionesportipo(tipo)
-        elif opcion == 5:
-            piso = int(input("Ingrese piso a buscar: \n"))
-            gestor.mostrarHabitacionesporpiso(piso)
-        elif opcion == 6:
-            gestor.mostrarHabitaciones()
+    gestor = gestorBiblioteca()
+    gestor.cargarDatos()
+    op = menu()
+    while op != 0:
+        if op == 1:
+            gestor.funcion1()
+        elif op == 2:
+            gestor.funcion2()
+        elif op == 3:
+            gestor.funcion3()
+        elif op == 4:
+            gestor.funcion4()
         else:
-            print("Opcion no valida, intente nuevamente.")
-        opcion = menu()
+            print("Opcion no valida intente nuevamente")
+        op = menu()
